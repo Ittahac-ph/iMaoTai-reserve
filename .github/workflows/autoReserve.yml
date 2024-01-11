@@ -8,10 +8,7 @@ on:
   push:
     branches: [ "master" ]
   schedule:
-    - cron: '*/5 9-10 * * *'
-
-env:
-  TZ: Asia/Shanghai
+    - cron: '*/5 1-2 * * *'
 
 permissions:
   contents: read
