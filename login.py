@@ -4,7 +4,7 @@ import config as cf
 import process
 import privateCrypt
 
-config = configparser.ConfigParser()  # 类实例化
+config = configparser.ConfigParser()  # 类实例化 
 
 
 def get_credentials_path():
