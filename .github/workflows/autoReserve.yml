@@ -13,6 +13,9 @@ on:
 permissions:
   contents: read
 
+env:
+  TZ: Asia/Shanghai
+
 jobs:
   build:
 
