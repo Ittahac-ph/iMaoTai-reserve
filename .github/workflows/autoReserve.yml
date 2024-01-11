@@ -4,10 +4,9 @@
 name: imaotai-action
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "master" ]
-    paths:
-      - '.github/workflows/**'
   schedule:
     - cron: '*/5 9-10 * * *'
 
