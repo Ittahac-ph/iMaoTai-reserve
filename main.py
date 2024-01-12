@@ -7,7 +7,7 @@ import login
 import process
 import privateCrypt
 
-DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p" 
+DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 TODAY = datetime.date.today().strftime("%Y%m%d")
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s  %(filename)s : %(levelname)s  %(message)s',  # 定义输出log的格式
@@ -44,6 +44,7 @@ for section in configs.sections():
     process.UserId = userId
     process.TOKEN = token
     process.init_headers(user_id=userId, token=token, lng=lng, lat=lat)
+    flag = True
     # 根据配置中，要预约的商品ID，城市 进行自动预约
     try:
         for item in config.ITEM_CODES:
@@ -67,14 +68,14 @@ for section in configs.sections():
             # 为了防止漏掉推送异常，所有只要有一个异常，标题就显示失败
             if not r_success:
                 s_title = '茅台预约结果详情'
+                flag = False
             s_content = s_content + r_content + shopInfo + "\n"
-            # 领取小茅运和耐力值
-            process.getUserEnergyAward(mobile)
     except BaseException as e:
         print(e)
         logging.error(e)
-    # 领取小茅运和耐力值
-    process.getUserEnergyAward(mobile)
+    if not flag:
+        # 领取小茅运和耐力值
+        process.getUserEnergyAward(mobile)
 
 # 推送消息
 process.send_msg(s_title, s_content)
