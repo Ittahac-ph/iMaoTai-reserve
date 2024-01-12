@@ -6,7 +6,7 @@ name: imaotai-action
 on:
   workflow_dispatch:
   schedule:
-    - cron: '40 0,1 * * *'
+    - cron: '50 10 * * *'
 
 permissions:
   contents: read
@@ -39,7 +39,13 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-
+            
+      - name: Set timezone
+        run: |
+          sudo ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+          echo "Asia/Shanghai" | sudo tee /etc/timezone
+          date
+          
       - name: start run
         env:
           PUSHPLUS_KEY: ${{ secrets.PUSHPLUS_KEY }}
