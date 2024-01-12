@@ -4,9 +4,8 @@
 name: imaotai-action 
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '54 2 * * *'
+    - cron: '57 2 * * *'
 
 permissions:
   contents: read
@@ -40,11 +39,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
             
-      - name: Set timezone
-        run: |
-          sudo ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          echo "Asia/Shanghai" | sudo tee /etc/timezone
-          date
+
           
       - name: start run
         env:
