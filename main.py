@@ -73,6 +73,8 @@ for section in configs.sections():
     except BaseException as e:
         print(e)
         logging.error(e)
+    # 领取小茅运和耐力值
+    process.getUserEnergyAward(mobile)
 
 # 推送消息
 process.send_msg(s_title, s_content)
