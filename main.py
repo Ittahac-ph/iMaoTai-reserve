@@ -44,7 +44,7 @@ for section in configs.sections():
     process.UserId = userId
     process.TOKEN = token
     process.init_headers(user_id=userId, token=token, lng=lng, lat=lat)
-    flag = True
+    flag = False
     # 根据配置中，要预约的商品ID，城市 进行自动预约
     try:
         for item in config.ITEM_CODES:
@@ -68,7 +68,7 @@ for section in configs.sections():
             # 为了防止漏掉推送异常，所有只要有一个异常，标题就显示失败
             if not r_success:
                 s_title = '茅台预约结果详情'
-                flag = False
+                flag = True
             s_content = s_content + r_content + shopInfo + "\n"
     except BaseException as e:
         print(e)
