@@ -6,7 +6,7 @@ name: imaotai-action
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1 1 * * *'
+    - cron: '19 0,1 * * *'
 
 permissions:
   contents: read
