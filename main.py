@@ -6,6 +6,8 @@ import config
 import login
 import process
 import privateCrypt
+import random
+import time
 
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 TODAY = datetime.date.today().strftime("%Y%m%d")
@@ -39,16 +41,18 @@ for section in configs.sections():
     lat = configs.get(section, 'lat')
     lng = configs.get(section, 'lng')
 
+      # 生成随机毫秒数（在一分钟内）
+    random_milliseconds = random.randint(0, 30000)
+    # 线程睡眠
+    time.sleep(random_milliseconds / 1000.0)
+  
     p_c_map, source_data = process.get_map(lat=lat, lng=lng)
 
     process.UserId = userId
     process.TOKEN = token
     process.init_headers(user_id=userId, token=token, lng=lng, lat=lat)
     flag = False
-    # 生成随机毫秒数（在一分钟内）
-    random_milliseconds = random.randint(0, 60000)
-    # 线程睡眠
-    time.sleep(random_milliseconds / 1000.0)
+
   
     # 根据配置中，要预约的商品ID，城市 进行自动预约
     try:
