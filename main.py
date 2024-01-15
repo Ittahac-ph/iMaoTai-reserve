@@ -45,6 +45,11 @@ for section in configs.sections():
     process.TOKEN = token
     process.init_headers(user_id=userId, token=token, lng=lng, lat=lat)
     flag = False
+    # 生成随机毫秒数（在一分钟内）
+    random_milliseconds = random.randint(0, 60000)
+    # 线程睡眠
+    time.sleep(random_milliseconds / 1000.0)
+  
     # 根据配置中，要预约的商品ID，城市 进行自动预约
     try:
         for item in config.ITEM_CODES:
