@@ -10,7 +10,7 @@ class Encrypt:
     # @staticmethod
     def pkcs7padding(self, text):
         """明文使用PKCS7填充 """
-        bs = 16
+        bs = 16 
         length = len(text)
         bytes_length = len(text.encode('utf-8'))
         padding_size = length if (bytes_length == length) else bytes_length

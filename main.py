@@ -39,7 +39,7 @@ for section in configs.sections():
     token = configs.get(section, 'token')
     userId = privateCrypt.decrypt_aes_ecb(configs.get(section, 'userid'), aes_key)
     lat = configs.get(section, 'lat')
-    lng = configs.get(section, 'lng')
+    lng = configs.get(section, 'lng') 
 
       # 生成随机毫秒数（在一分钟内）
     random_milliseconds = random.randint(0, 30000)

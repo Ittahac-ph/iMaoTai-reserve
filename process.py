@@ -17,7 +17,7 @@ SALT = '2af72f100c356273d46284f6fd1dfc08'
 
 CURRENT_TIME = str(int(time.time() * 1000))
 headers = {}
-
+ 
 '''
 # 获取茅台APP的版本号，暂时没找到接口，采用爬虫曲线救国
 # 用bs获取指定的class更稳定，之前的正则可能需要经常改动

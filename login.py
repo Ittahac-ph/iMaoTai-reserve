@@ -3,8 +3,10 @@ import os
 import config as cf
 import process
 import privateCrypt
+import random
+import time
 
-config = configparser.ConfigParser()  # 类实例化 
+config = configparser.ConfigParser()  # 类实例化
 
 
 def get_credentials_path():
@@ -17,7 +19,7 @@ def get_credentials_path():
         if not os.path.exists(config_parent_path):
             os.mkdir(config_parent_path)
         return config_path
-
+ 
 
 path = get_credentials_path()
 # 这里config需要用encoding，以防跨平台乱码
@@ -29,7 +31,6 @@ def get_location():
     while 1:
         location = input(f"请输入精确小区位置，例如[小区名称]，为你自动预约附近的门店:").strip()
         selects = process.select_geo(location)
-
         a = 0
         for item in selects:
             formatted_address = item['formatted_address']
@@ -51,9 +52,16 @@ if __name__ == '__main__':
     aes_key = privateCrypt.get_aes_key()
 
     while 1:
+                # 生成随机毫秒数（在一分钟内）
+        random_milliseconds = random.randint(0, 30000)
+        
+        print(f"Sleeping for {random_milliseconds} milliseconds")
+        
+        # 线程睡眠
+        time.sleep(random_milliseconds / 1000.0)
         process.init_headers()
         location_select: dict = get_location()
-        province = location_select['province']
+        province = location_select['province'] 
         city = location_select['city']
         location: str = location_select['location']
 
